@@ -88,7 +88,7 @@ class Store {
 
   /**
    * Создание уникального индекса
-   * @param {number?} initial
+   * @param {number?} initial начальное значение
    * @returns {number}
    */
   makeUniqueIndex(initial) {
