@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import {getNoun} from "./utils";
 
 /**
  * Приложение
@@ -26,7 +27,7 @@ function App({store}) {
                    onClick={() => store.selectItem(item.code)}>
                 <div className='Item-code'>{item.code}</div>
                 <div className='Item-title'>{item.title}</div>
-                {item.targeted && <div className="Item-targeted">Выделяли {item.targeted} раз</div>}
+                {item.targeted && <div className="Item-targeted">Выделяли {item.targeted} {getNoun(item.targeted)}</div>}
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>
                     Удалить
