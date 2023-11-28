@@ -46,7 +46,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
+      list: [...this.state.list, {code: generateCode(), title: 'Новая запись', price: Math.floor(Math.random() * 10000)}]
     })
   };
 
@@ -63,23 +63,40 @@ class Store {
   };
 
   /**
-   * Выделение записи по коду
+   * Добавление товара в корзину
    * @param code
    */
-  selectItem(code) {
+  addToCart(code) {
     this.setState({
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
-          // Смена выделения и подсчёт
+          // Увеличение количества товара в корзине
           return {
             ...item,
-            selected: !item.selected,
-            count: item.selected ? item.count : item.count + 1 || 1,
+            count: item.count ? item.count + 1 : 1,
           };
         }
-        // Сброс выделения если выделена
-        return item.selected ? {...item, selected: false} : item;
+        return item;
+      })
+    })
+  }
+
+  /**
+   * Удаление товара из корзины
+   * @param code
+   */
+  removeFromCart(code) {
+    this.setState({
+      ...this.state,
+      list: this.state.list.map(item => {
+        if (item.code === code) {
+          return {
+            ...item,
+            count: 0,
+          };
+        }
+        return item;
       })
     })
   }
