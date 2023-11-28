@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css'
+import "./style.css";
 import PropTypes from "prop-types";
 
 const Total = ({children}) => {
@@ -8,10 +8,10 @@ const Total = ({children}) => {
       {children}
     </div>
   );
-}
+};
 
 Total.propTypes = {
   children: PropTypes.node,
-}
+};
 
 export default Total;

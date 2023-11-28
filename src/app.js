@@ -66,7 +66,7 @@ function App({store}) {
               <Actions>
                 <strong>Итого</strong>
                 <strong>{`${totalPrice} ₽`}</strong>
-                <div />
+                <div/>
               </Actions>
             </Total>
           </>) : (<h2>В корзине нет товаров</h2>)}

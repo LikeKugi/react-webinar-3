@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Item from "../item";
 import "./style.css";
-import {cn as bem} from '@bem-react/classname';
+import {cn as bem} from "@bem-react/classname";
 
 function List(props) {
-  const cn = bem('List');
+  const cn = bem("List");
 
   return (
     <div className="List">{
       props.list.map(item =>
         <div key={item.code}
-             className={cn('item')}>
+             className={cn("item")}>
           <Item item={item}
                 onButtonClick={props.onActionItem}
                 buttonDescription={props.actionDescription}/>

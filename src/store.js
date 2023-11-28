@@ -19,7 +19,7 @@ class Store {
     // Возвращается функция для удаления добавленного слушателя
     return () => {
       this.listeners = this.listeners.filter(item => item !== listener);
-    }
+    };
   }
 
   /**
@@ -46,8 +46,12 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: generateCode(), title: 'Новая запись', price: Math.floor(Math.random() * 10000)}]
-    })
+      list: [...this.state.list, {
+        code: generateCode(),
+        title: "Новая запись",
+        price: Math.floor(Math.random() * 10000)
+      }]
+    });
   };
 
   /**
@@ -59,7 +63,7 @@ class Store {
       ...this.state,
       // Новый список, в котором не будет удаляемой записи
       list: this.state.list.filter(item => item.code !== code)
-    })
+    });
   };
 
   /**
@@ -79,7 +83,7 @@ class Store {
         }
         return item;
       })
-    })
+    });
   }
 
   /**
@@ -98,7 +102,7 @@ class Store {
         }
         return item;
       })
-    })
+    });
   }
 }
 

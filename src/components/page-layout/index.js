@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {cn as bem} from '@bem-react/classname';
-import './style.css';
+import {cn as bem} from "@bem-react/classname";
+import "./style.css";
 
 function PageLayout({children}) {
 
-  const cn = bem('PageLayout');
+  const cn = bem("PageLayout");
 
   return (
     <div className={cn()}>
-      <div className={cn('center')}>
+      <div className={cn("center")}>
         {children}
       </div>
     </div>
@@ -18,6 +18,6 @@ function PageLayout({children}) {
 
 PageLayout.propTypes = {
   children: PropTypes.node
-}
+};
 
 export default React.memo(PageLayout);
