@@ -1,0 +1,12 @@
+.Actions {
+  display: flex;
+  place-items: center;
+  place-content: flex-end;
+}
+
+.Actions * {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 100px;
+  text-align: right;
+}
