@@ -1,0 +1,28 @@
+.no_scroll {
+  overflow: hidden;
+}
+
+.Modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.70);
+}
+
+.Modal-content {
+  width: 100%;
+  max-width: 960px;
+  background-color: #fff;
+}
+
+.Modal-content div {
+  border-radius: 10px;
+}
+
+.Modal-list {
+  padding-block: 70px;
+  padding-inline: 20px;
+}
+
