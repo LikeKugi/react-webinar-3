@@ -20,7 +20,7 @@
 }
 
 .Modal-list {
-  padding-block: 70px;
-  /* padding-inline: 20px; */
+  padding-block-start: 70px;
+  padding-block-end: 85px;
 }
 

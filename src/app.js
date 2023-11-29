@@ -4,9 +4,7 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Modal from "./components/modal";
-import Actions from "./components/actions";
-import Total from "./components/total";
-import {formatCurrency} from "./utils";
+import CartTotal from "./components/cartTotal";
 
 /**
  * Приложение
@@ -63,13 +61,7 @@ function App({store}) {
             <List list={list.filter(item => item.count)}
                   onActionItem={callbacks.onDeleteItem}
                   actionDescription="Удалить"/>
-            <Total>
-              <Actions>
-                <strong>Итого</strong>
-                <strong>{`${formatCurrency(totalPrice)}`}</strong>
-                <div/>
-              </Actions>
-            </Total>
+            <CartTotal totalPrice={totalPrice} />
           </>) : (<h2>В корзине нет товаров</h2>)}
         </Modal>
       )}

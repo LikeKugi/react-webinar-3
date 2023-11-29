@@ -20,3 +20,8 @@
   padding-inline: 10px;
 }
 
+button.Item-button {
+  text-align: center;
+  min-width: 75px;
+}
+

@@ -6,12 +6,12 @@ import {plural} from "../../utils";
 function Controls(props) {
   return (
     <div className="Controls">
-      <p>В корзине: <strong>{props.totalCount ? `${props.totalCount} ${plural(props.totalCount, {
+      <p><span>В корзине:</span> <strong>{props.totalCount ? `${props.totalCount} ${plural(props.totalCount, {
         one: "товар",
         few: "товара",
         many: "товаров"
       })} / ${props.totalPrice} ₽` : "Пусто"}</strong></p>
-      <button onClick={props.onShow}>Перейти</button>
+        <button onClick={props.onShow}>Перейти</button>
     </div>
   );
 }

@@ -14,3 +14,8 @@
   padding-block-start: 32px;
   padding-inline-end: 32px;
 }
+
+.Head button {
+  min-width: 75px;
+  text-align: center;
+}

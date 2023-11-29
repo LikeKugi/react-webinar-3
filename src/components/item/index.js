@@ -29,7 +29,7 @@ function Item(props) {
           {`${props.item.count} шт`}
         </div>)}
         <div>
-          <button onClick={callbacks.onAction}>
+          <button className={cn('button')} onClick={callbacks.onAction}>
             {props.buttonDescription}
           </button>
         </div>
