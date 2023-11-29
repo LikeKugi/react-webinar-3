@@ -6,6 +6,7 @@ import PageLayout from "./components/page-layout";
 import Modal from "./components/modal";
 import Actions from "./components/actions";
 import Total from "./components/total";
+import {formatCurrency} from "./utils";
 
 /**
  * Приложение
@@ -65,7 +66,7 @@ function App({store}) {
             <Total>
               <Actions>
                 <strong>Итого</strong>
-                <strong>{`${totalPrice} ₽`}</strong>
+                <strong>{`${formatCurrency(totalPrice)}`}</strong>
                 <div/>
               </Actions>
             </Total>

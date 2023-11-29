@@ -1,4 +1,5 @@
 .Item {
+  padding-block: 19px;
   padding-inline: 20px;
   display: flex;
   justify-content: flex-start;
@@ -11,11 +12,11 @@
 }
 
 .Item-code {
-  padding: 20px 10px 20px 0;
+  padding-inline-end: 10px;
 }
 
 .Item-title {
   width: 100%;
-  padding: 20px 10px;
+  padding-inline: 10px;
 }
 
