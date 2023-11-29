@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {cn as bem} from "@bem-react/classname";
 import "./style.css";
 import Actions from "../actions";
+import {formatCurrency} from "../../utils";
 
 function Item(props) {
 
@@ -22,7 +23,7 @@ function Item(props) {
       </div>
       <Actions>
         <div>
-          {`${props.item.price} ₽`}
+          {`${formatCurrency(props.item.price)}`}
         </div>
         {!!props.item.count && (<div>
           {`${props.item.count} шт`}

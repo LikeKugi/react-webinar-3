@@ -19,12 +19,8 @@
   border-radius: 10px;
 }
 
-.Modal-content div {
-  border-radius: 10px;
-}
-
 .Modal-list {
   padding-block: 70px;
-  padding-inline: 20px;
+  /* padding-inline: 20px; */
 }
 
