@@ -6,6 +6,10 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.setState({
+      ...this.state,
+      cart: new Map(),
+    })
   }
 
   /**
@@ -44,18 +48,16 @@ class Store {
    * @param code
    */
   addToCart(code) {
+
+    const addingItemIndex = this.state.list.findIndex(item => item.code === code);
+    const addingItem = this.state.list[addingItemIndex];
+    const newCart = this.state.cart;
+
+    newCart.set(addingItem, newCart.has(addingItem) ? newCart.get(addingItem) + 1 : 1)
+
     this.setState({
       ...this.state,
-      list: this.state.list.map(item => {
-        if (item.code === code) {
-          // Увеличение количества товара в корзине
-          return {
-            ...item,
-            count: item.count ? item.count + 1 : 1,
-          };
-        }
-        return item;
-      })
+      cart: newCart,
     });
   }
 
@@ -64,18 +66,44 @@ class Store {
    * @param code
    */
   removeFromCart(code) {
+
+    const removingItemIndex = this.state.list.findIndex(item => item.code === code);
+    const newCart = this.state.cart;
+    newCart.delete(this.state.list[removingItemIndex]);
+
     this.setState({
       ...this.state,
-      list: this.state.list.map(item => {
-        if (item.code === code) {
-          return {
-            ...item,
-            count: 0,
-          };
-        }
-        return item;
-      })
+      cart: newCart,
     });
+  }
+
+  /**
+   * Количество товаров в корзине
+   * @returns {number}
+   */
+  getTotalCount() {
+    return [...this.state.cart.values()].length;
+  }
+
+  /**
+   * Общая цена товаров в корзине
+   * @returns {number}
+   */
+  getTotalPrice() {
+    let totalPrice = 0;
+    this.state.cart.forEach((count, item) => {
+      totalPrice += count * item.price;
+    });
+    return totalPrice;
+  }
+
+  getCartArray() {
+    const itemsArray = [];
+    this.state.cart.forEach((count, item) => itemsArray.push({
+      ...item,
+      count
+    }))
+    return itemsArray;
   }
 }
 

@@ -5,6 +5,7 @@ import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Modal from "./components/modal";
 import CartTotal from "./components/cartTotal";
+import EmptyCart from "./components/emptyCart";
 
 /**
  * Приложение
@@ -16,8 +17,9 @@ function App({store}) {
   const [showModal, setShowModal] = useState(false);
 
   const list = store.getState().list;
-  const totalCount = list.reduce((a, item) => item.count > 0 ? a + 1 : a, 0);
-  const totalPrice = list.reduce((a, item) => item.count > 0 ? a + item.count * item.price : a, 0);
+  const cart = store.getCartArray();
+  const totalCount = store.getTotalCount();
+  const totalPrice = store.getTotalPrice();
 
   const callbacks = {
     onDeleteItem: useCallback((code) => {
@@ -58,11 +60,11 @@ function App({store}) {
                  <button onClick={callbacks.onCloseCart}>Закрыть</button>
                </Head>)}>
           {!!totalCount ? (<>
-            <List list={list.filter(item => item.count)}
+            <List list={cart}
                   onActionItem={callbacks.onDeleteItem}
                   actionDescription="Удалить"/>
             <CartTotal totalPrice={totalPrice} />
-          </>) : (<h2>В корзине нет товаров</h2>)}
+          </>) : (<EmptyCart />)}
         </Modal>
       )}
     </>
