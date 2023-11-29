@@ -21,4 +21,4 @@ CartTotal.propTypes = {
   totalPrice: PropTypes.number,
 }
 
-export default CartTotal;
+export default React.memo(CartTotal);

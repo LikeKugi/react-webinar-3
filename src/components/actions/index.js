@@ -15,4 +15,4 @@ Actions.propTypes = {
 };
 
 
-export default Actions;
+export default React.memo(Actions);

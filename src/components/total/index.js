@@ -14,4 +14,4 @@ Total.propTypes = {
   children: PropTypes.node,
 };
 
-export default Total;
+export default React.memo(Total);
