@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import {numberFormat} from "../../utils";
+import "./style.css";
 
 function ItemSupply(props) {
 
@@ -9,16 +10,17 @@ function ItemSupply(props) {
       price: props.item.price,
       title: props.item.title,
     })
-  }
+  };
 
-  return (<div>
-    <p>{props.item.description}</p>
-    <p>Страна производитель: <strong>{props.item.madeIn.title} ({props.item.madeIn.code})</strong></p>
-    <p>Категория: <strong>{props.item.category.title}</strong></p>
-    <p>Год выпуска: <strong>{props.item.edition}</strong></p>
-    <h2>Цена: {numberFormat(props.item.price)} ₽</h2>
-    <button onClick={callbacks.onAdd}>Добавить</button>
-  </div>)
+  return (
+    <div className="ItemSupply">
+      <p>{props.item.description}</p>
+      <p>Страна производитель: <strong>{props.item.madeIn.title} ({props.item.madeIn.code})</strong></p>
+      <p>Категория: <strong>{props.item.category.title}</strong></p>
+      <p>Год выпуска: <strong>{props.item.edition}</strong></p>
+      <h2>Цена: {numberFormat(props.item.price)} ₽</h2>
+      <button onClick={callbacks.onAdd}>Добавить</button>
+    </div>);
 }
 
 ItemSupply.propTypes = {
@@ -40,7 +42,8 @@ ItemSupply.propTypes = {
 };
 
 ItemSupply.defaultProps = {
-  onAdd: () => {}
-}
+  onAdd: () => {
+  }
+};
 
 export default ItemSupply;
