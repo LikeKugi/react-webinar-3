@@ -1,0 +1,37 @@
+.Pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.Pagination * {
+  min-width: 20px;
+  height: 20px;
+  display: block;
+  padding: 0;
+  text-align: center;
+}
+
+.Pagination button {
+  padding: 1px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.Pagination button:hover {
+  color: inherit;
+  background-color: #E1E1E1;
+}
+
+.Pagination button:active {
+  color: #FFFFFF;
+  background-color: #0087E9;
+}
+
+.Pagination .active {
+  color: #FFFFFF;
+  background-color: #0087E9;
+}
+

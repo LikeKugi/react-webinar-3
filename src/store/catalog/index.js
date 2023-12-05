@@ -12,9 +12,16 @@ class Catalog extends StoreModule {
     return {
       list: [],
       limit: 10,
-      skip: 10,
+      skip: 0,
       count: 0,
     }
+  }
+
+  setSkip(skip) {
+    this.setState({
+      ...this.getState(),
+      skip,
+    })
   }
 
   async load() {
@@ -22,6 +29,7 @@ class Catalog extends StoreModule {
     const queryParams = new URLSearchParams({
       limit,
       skip,
+      fields: 'items(_id,title,price),count'
     })
     const response = await fetch('/api/v1/articles'+`?${queryParams.toString()}`);
     const json = await response.json();
