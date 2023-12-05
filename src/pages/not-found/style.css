@@ -1,0 +1,9 @@
+.NotFound {
+  padding-block-start: 3rem;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  gap: 2rem;
+  background-color: #fff;
+}

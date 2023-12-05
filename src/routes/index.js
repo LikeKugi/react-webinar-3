@@ -1,2 +1,4 @@
-export * from './routes.constants'
-export {AppRouter} from './app-router'
+import AppRouter from "./app-router";
+
+export * from "./routes.constants";
+export {AppRouter};
