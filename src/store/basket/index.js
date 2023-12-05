@@ -45,6 +45,34 @@ class Basket extends StoreModule {
     }, 'Добавление в корзину');
   }
 
+  addItemToBasket(item) {
+    let sum = 0;
+    let exist = false;
+    const list = this.getState().list.map(el => {
+        let result = el;
+        if (item._id === el._id) {
+          exist = true; // Запомним, что был найден в корзине
+          result = {...el, amount: el.amount + 1};
+        }
+        sum += result.price * result.amount;
+        return result;
+    });
+    if (!exist) {
+      list.push({
+        ...item,
+        amount: 1,
+      });
+      sum += item.price;
+    }
+
+    this.setState({
+      ...this.getState(),
+      list,
+      sum,
+      amount: list.length
+    }, 'Добавление в корзину');
+  }
+
   /**
    * Удаление товара из корзины
    * @param _id Код товара

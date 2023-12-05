@@ -3,13 +3,10 @@ import "./style.css";
 
 function Pagination({current, total, changePage}) {
 
-  console.log(current);
-
   const callbacks = {
     // Пагинация
     handleChangePage: useCallback(e => {
       if (!(e.target instanceof HTMLButtonElement)) return;
-      console.log(+e.target.textContent);
       changePage(+e.target.textContent);
     }, [changePage])
   };
