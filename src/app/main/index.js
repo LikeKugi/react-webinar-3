@@ -19,8 +19,6 @@ const translations = {
 
 function Main() {
 
-  const lang = document.body.dataset.lang || 'ru';
-
   const store = useStore();
 
   const select = useSelector(state => ({
@@ -29,7 +27,8 @@ function Main() {
     skip: state.catalog.skip,
     count: state.catalog.count,
     amount: state.basket.amount,
-    sum: state.basket.sum
+    sum: state.basket.sum,
+    lang: state.lang.lang,
   }));
 
   useEffect(() => {
@@ -44,20 +43,21 @@ function Main() {
     // пагинация
     changePage: useCallback((page) => {
       store.actions.catalog.setSkip((page - 1) * select.limit);
-    }, [store])
+    }, [store]),
+    changeLanguage: useCallback(() => store.actions.lang.toggleLanguage(), [store])
   }
 
   const renders = {
     item: useCallback((item) => {
-      return <Item item={item} onAdd={callbacks.addToBasket}/>
-    }, [callbacks.addToBasket]),
+      return <Item item={item} onAdd={callbacks.addToBasket} lang={select.lang}/>
+    }, [callbacks.addToBasket, select.lang]),
   };
 
   return (
     <PageLayout>
-      <Head title={translations[lang].title}/>
+      <Head title={translations[select.lang].title} onButtonClick={callbacks.changeLanguage} lang={select.lang}/>
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-                  sum={select.sum}/>
+                  sum={select.sum} lang={select.lang}/>
       <List list={select.list} renderItem={renders.item}/>
       <Pagination current={select.skip / select.limit + 1} total={Math.ceil(+select.count / select.limit)} changePage={callbacks.changePage} />
     </PageLayout>

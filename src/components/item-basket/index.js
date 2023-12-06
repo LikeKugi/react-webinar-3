@@ -1,5 +1,4 @@
 import {memo} from "react";
-import propTypes from "prop-types";
 import {numberFormat} from "../../utils";
 import {cn as bem} from "@bem-react/classname";
 import PropTypes from "prop-types";
@@ -17,7 +16,6 @@ const translations = {
 }
 
 function ItemBasket(props) {
-  const lang = document.body.dataset.lang || 'ru';
 
   const cn = bem("ItemBasket");
 
@@ -27,7 +25,6 @@ function ItemBasket(props) {
 
   return (
     <div className={cn()}>
-      {/*<div className={cn('code')}>{props.item._id}</div>*/}
       <div className={cn("title")}><Link className={cn("link")}
                                          to={`${routesConstants.SUPPLIES}/${props.item._id}`}>{props.item.title}</Link>
       </div>
@@ -35,7 +32,7 @@ function ItemBasket(props) {
         <div className={cn("cell")}>{numberFormat(props.item.price)} ₽</div>
         <div className={cn("cell")}>{numberFormat(props.item.amount || 0)} шт</div>
         <div className={cn("cell")}>
-          <button onClick={callbacks.onRemove}>{translations[lang].button}</button>
+          <button onClick={callbacks.onRemove}>{translations[props.lang].button}</button>
         </div>
       </div>
     </div>
@@ -49,12 +46,14 @@ ItemBasket.propTypes = {
     price: PropTypes.number,
     amount: PropTypes.number
   }).isRequired,
-  onRemove: propTypes.func,
+  onRemove: PropTypes.func,
+  lang: PropTypes.string,
 };
 
 ItemBasket.defaultProps = {
   onRemove: () => {
   },
+  lang: 'ru'
 };
 
 export default memo(ItemBasket);

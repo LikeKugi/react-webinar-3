@@ -18,6 +18,7 @@ function Supply() {
     amount: state.basket.amount,
     sum: state.basket.sum,
     supply: state.supply,
+    lang: state.lang.lang,
   }));
 
   useEffect(() => {
@@ -37,15 +38,16 @@ function Supply() {
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
     // Добавление в корзину
     addToBasket: useCallback(item => store.actions.basket.addItemToBasket(item), [store]),
+    changeLanguage: useCallback(() => store.actions.lang.toggleLanguage(), [store]),
 
   }
   return (
     <PageLayout>
-      <Head title={select.supply.title} />
+      <Head title={select.supply.title} lang={select.lang} onButtonClick={callbacks.changeLanguage} />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-                  sum={select.sum}/>
+                  sum={select.sum} lang={select.lang}/>
       {!loading && <ItemSupply item={select.supply}
-                               onAdd={callbacks.addToBasket}/>}
+                               onAdd={callbacks.addToBasket} lang={select.lang}/>}
     </PageLayout>
   )
 }

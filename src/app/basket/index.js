@@ -17,14 +17,13 @@ const translations = {
 
 function Basket() {
 
-  const lang = document.body.dataset.lang || 'ru';
-
   const store = useStore();
 
   const select = useSelector(state => ({
     list: state.basket.list,
     amount: state.basket.amount,
-    sum: state.basket.sum
+    sum: state.basket.sum,
+    lang: state.lang.lang,
   }));
 
   const callbacks = {
@@ -36,14 +35,14 @@ function Basket() {
 
   const renders = {
     itemBasket: useCallback((item) => {
-      return <ItemBasket item={item} onRemove={callbacks.removeFromBasket}/>
-    }, [callbacks.removeFromBasket]),
+      return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} lang={select.lang}/>
+    }, [callbacks.removeFromBasket, select.lang]),
   };
 
   return (
-    <ModalLayout title={translations[lang].cart} onClose={callbacks.closeModal}>
+    <ModalLayout title={translations[select.lang].cart} onClose={callbacks.closeModal}>
       <List list={select.list} renderItem={renders.itemBasket}/>
-      <BasketTotal sum={select.sum}/>
+      <BasketTotal sum={select.sum} lang={select.lang}/>
     </ModalLayout>
   );
 }

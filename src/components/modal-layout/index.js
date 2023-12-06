@@ -14,8 +14,6 @@ const translations = {
 
 function ModalLayout(props) {
 
-  const lang = document.body.dataset.lang || 'ru';
-
   const cn = bem('ModalLayout');
 
   // Корректировка центра, если модалка больше окна браузера.
@@ -43,7 +41,7 @@ function ModalLayout(props) {
       <div className={cn('frame')} ref={frame}>
         <div className={cn('head')}>
           <h1 className={cn('title')}>{props.title}</h1>
-          <button className={cn('close')} onClick={props.onClose}>{translations[lang].button}</button>
+          <button className={cn('close')} onClick={props.onClose}>{translations[props.lang].button}</button>
         </div>
         <div className={cn('content')}>
           {props.children}
@@ -57,11 +55,13 @@ ModalLayout.propTypes = {
   title: PropTypes.string,
   onClose: PropTypes.func,
   children: PropTypes.node,
+  lang: PropTypes.string,
 };
 
 ModalLayout.defaultProps = {
   title: 'Модалка',
-  onClose: () => {}
+  onClose: () => {},
+  lang: 'ru'
 };
 
 export default memo(ModalLayout);

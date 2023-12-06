@@ -17,8 +17,6 @@ const translations = {
 
 function Item(props) {
 
-  const lang = document.body.dataset.lang || 'ru';
-
   const cn = bem('Item');
 
   const callbacks = {
@@ -34,7 +32,7 @@ function Item(props) {
       </div>
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(props.item.price)} ₽</div>
-        <button onClick={callbacks.onAdd}>{translations[lang].button}</button>
+        <button onClick={callbacks.onAdd}>{translations[props.lang].button}</button>
       </div>
     </div>
   );
@@ -47,10 +45,12 @@ Item.propTypes = {
     price: PropTypes.number
   }).isRequired,
   onAdd: PropTypes.func,
+  lang: PropTypes.string,
 };
 
 Item.defaultProps = {
   onAdd: () => {},
+  lang: 'ru',
 }
 
 export default memo(Item);

@@ -27,12 +27,11 @@ const translations = {
   }
 }
 
-function BasketTool({sum, amount, onOpen}) {
-  const lang = document.body.dataset.lang || 'ru';
+function BasketTool({sum, amount, onOpen, lang}) {
   const cn = bem('BasketTool');
   return (
     <div className={cn()}>
-      <Link className={cn('link')} to={routesConstants.INDEX} >{translations[lang].title}</Link>
+      <Link className={cn('link')} to={routesConstants.INDEX} >{translations[lang].link}</Link>
       <div>
         <span className={cn("label")}>{translations[lang].cart}</span>
         <span className={cn("total")}>
@@ -54,13 +53,15 @@ function BasketTool({sum, amount, onOpen}) {
 BasketTool.propTypes = {
   onOpen: PropTypes.func.isRequired,
   sum: PropTypes.number,
-  amount: PropTypes.number
+  amount: PropTypes.number,
+  lang: PropTypes.string,
 };
 
 BasketTool.defaultProps = {
   onOpen: () => {},
   sum: 0,
-  amount: 0
+  amount: 0,
+  lang: 'ru'
 }
 
 export default memo(BasketTool);

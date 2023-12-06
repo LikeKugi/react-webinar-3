@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import {numberFormat} from "../../utils";
 import "./style.css";
+import {memo} from "react";
 
 const translations = {
   ru: {
@@ -21,8 +22,6 @@ const translations = {
 
 function ItemSupply(props) {
 
-  const lang = document.body.dataset.lang || 'ru';
-
   const callbacks = {
     onAdd: () => props.onAdd({
       _id: props.item._id,
@@ -34,11 +33,11 @@ function ItemSupply(props) {
   return (
     <div className="ItemSupply">
       <p>{props.item.description}</p>
-      <p>{translations[lang].country}<strong>{props.item.madeIn.title} ({props.item.madeIn.code})</strong></p>
-      <p>К{translations[lang].category}<strong>{props.item.category.title}</strong></p>
-      <p>{translations[lang].edition}<strong>{props.item.edition}</strong></p>
-      <h2>{translations[lang].price}{numberFormat(props.item.price)} ₽</h2>
-      <button onClick={callbacks.onAdd}>{translations[lang].button}</button>
+      <p>{translations[props.lang].country}<strong>{props.item.madeIn.title} ({props.item.madeIn.code})</strong></p>
+      <p>{translations[props.lang].category}<strong>{props.item.category.title}</strong></p>
+      <p>{translations[props.lang].edition}<strong>{props.item.edition}</strong></p>
+      <h2>{translations[props.lang].price}{numberFormat(props.item.price)} ₽</h2>
+      <button onClick={callbacks.onAdd}>{translations[props.lang].button}</button>
     </div>);
 }
 
@@ -58,11 +57,13 @@ ItemSupply.propTypes = {
     }),
   }),
   onAdd: PropTypes.func,
+  lang: PropTypes.string,
 };
 
 ItemSupply.defaultProps = {
   onAdd: () => {
-  }
+  },
+  lang: 'ru',
 };
 
-export default ItemSupply;
+export default memo(ItemSupply);

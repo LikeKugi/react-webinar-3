@@ -13,8 +13,7 @@ const translations = {
   }
 }
 
-function BasketTotal({sum}) {
-  const lang = document.body.dataset.lang || 'ru';
+function BasketTotal({sum, lang}) {
   const cn = bem('BasketTotal');
   return (
     <div className={cn()}>
@@ -26,11 +25,13 @@ function BasketTotal({sum}) {
 }
 
 BasketTotal.propTypes = {
-  sum: PropTypes.number
+  sum: PropTypes.number,
+  lang: PropTypes.string,
 };
 
 BasketTotal.defaultProps = {
-  sum: 0
+  sum: 0,
+  lang: 'ru'
 }
 
 export default memo(BasketTotal);
