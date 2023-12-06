@@ -3,7 +3,18 @@ import PropTypes from "prop-types";
 import {cn as bem} from '@bem-react/classname';
 import './style.css';
 
+const translations = {
+  ru: {
+    button: 'Закрыть',
+  },
+  en: {
+    button: 'Close',
+  }
+}
+
 function ModalLayout(props) {
+
+  const lang = document.body.dataset.lang || 'ru';
 
   const cn = bem('ModalLayout');
 
@@ -32,7 +43,7 @@ function ModalLayout(props) {
       <div className={cn('frame')} ref={frame}>
         <div className={cn('head')}>
           <h1 className={cn('title')}>{props.title}</h1>
-          <button className={cn('close')} onClick={props.onClose}>Закрыть</button>
+          <button className={cn('close')} onClick={props.onClose}>{translations[lang].button}</button>
         </div>
         <div className={cn('content')}>
           {props.children}

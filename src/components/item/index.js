@@ -6,7 +6,18 @@ import './style.css';
 import {Link} from "react-router-dom";
 import {routesConstants} from "../../routes";
 
+const translations = {
+  ru: {
+    button: 'Добавить',
+  },
+  en: {
+    button: 'Add',
+  }
+}
+
 function Item(props) {
+
+  const lang = document.body.dataset.lang || 'ru';
 
   const cn = bem('Item');
 
@@ -16,7 +27,6 @@ function Item(props) {
 
   return (
     <div className={cn()}>
-      {/*<div className={cn('code')}>{props.item._id}</div>*/}
       <div className={cn('title')}>
         <Link className={cn('link')} to={`${routesConstants.SUPPLIES}/${props.item._id}`}>
           {props.item.title}
@@ -24,7 +34,7 @@ function Item(props) {
       </div>
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(props.item.price)} ₽</div>
-        <button onClick={callbacks.onAdd}>Добавить</button>
+        <button onClick={callbacks.onAdd}>{translations[lang].button}</button>
       </div>
     </div>
   );

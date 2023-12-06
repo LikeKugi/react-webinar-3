@@ -7,7 +7,17 @@ import "./style.css";
 import {Link} from "react-router-dom";
 import {routesConstants} from "../../routes";
 
+const translations = {
+  ru: {
+    button: 'Удалить',
+  },
+  en: {
+    button: 'Remove',
+  }
+}
+
 function ItemBasket(props) {
+  const lang = document.body.dataset.lang || 'ru';
 
   const cn = bem("ItemBasket");
 
@@ -25,7 +35,7 @@ function ItemBasket(props) {
         <div className={cn("cell")}>{numberFormat(props.item.price)} ₽</div>
         <div className={cn("cell")}>{numberFormat(props.item.amount || 0)} шт</div>
         <div className={cn("cell")}>
-          <button onClick={callbacks.onRemove}>Удалить</button>
+          <button onClick={callbacks.onRemove}>{translations[lang].button}</button>
         </div>
       </div>
     </div>
