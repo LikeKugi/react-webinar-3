@@ -36,6 +36,14 @@ function ModalLayout(props) {
     }
   }, []);
 
+  const callbacks = {
+    closeModalHandler: (e) => {
+      if (e.target.closest('a')) {
+        props.onClose();
+      }
+    }
+  }
+
   return (
     <div className={cn()} ref={layout}>
       <div className={cn('frame')} ref={frame}>
@@ -43,7 +51,7 @@ function ModalLayout(props) {
           <h1 className={cn('title')}>{props.title}</h1>
           <button className={cn('close')} onClick={props.onClose}>{translations[props.lang].button}</button>
         </div>
-        <div className={cn('content')}>
+        <div className={cn('content')} onClick={callbacks.closeModalHandler}>
           {props.children}
         </div>
       </div>
