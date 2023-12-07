@@ -31,7 +31,7 @@ function Supply() {
     return () => {
       store.actions.supply.initState();
     }
-  }, [])
+  }, [id])
 
   const callbacks = {
     // Открытие модалки корзины
