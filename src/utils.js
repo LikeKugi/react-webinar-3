@@ -27,9 +27,31 @@ export function codeGenerator(start = 0) {
 /**
  * Форматирование разрядов числа
  * @param value {Number}
+ * @param locale {String}
  * @param options {Object}
  * @returns {String}
  */
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
+}
+
+/**
+ *
+ * @param map {Map | undefined}
+ * @param out {Array}
+ * @param key {null | string}
+ * @param indent {Number}
+ */
+export function makeOptionsArrayFromMap(map, out=[], key=null , indent=0) {
+  if (!map.size) {
+    return out
+  }
+  for (const item of map.get(key)) {
+    console.log(item, indent)
+    out.push({value: item._id, title: '- '.repeat(indent)+item.title});
+    if (map.has(item._id)) {
+      makeOptionsArrayFromMap(map, out, item._id, indent+1)
+    }
+  }
+  return out;
 }
