@@ -1,0 +1,9 @@
+.InputField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.InputField input {
+  min-width: 195px;
+}

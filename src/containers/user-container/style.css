@@ -1,0 +1,6 @@
+.UserContainer {
+  max-width: 1024px;
+  margin: 0 auto;
+  background: #fff;
+  box-sizing: border-box;
+}
