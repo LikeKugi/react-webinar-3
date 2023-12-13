@@ -21,7 +21,7 @@ function Profile() {
   }));
 
   if (!token) {
-    return <Navigate to={"/"}/>;
+    return <Navigate to={"/login"}/>;
   }
 
   return (<>
