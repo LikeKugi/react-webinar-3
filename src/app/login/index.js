@@ -1,4 +1,3 @@
-import useStore from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 import Head from "../../components/head";
 import LocaleSelect from "../../containers/locale-select";
@@ -6,11 +5,20 @@ import Navigation from "../../containers/navigation";
 import SideLayout from "../../components/side-layout";
 import LoginForm from "../../containers/login-form";
 import Heading from "../../components/heading/heading";
+import useSelector from "../../hooks/use-selector";
+import {Navigate} from "react-router-dom";
 
 function Login() {
-  const store = useStore();
-
   const {t} = useTranslate();
+
+  const select = useSelector(state => ({
+    _id: state.user.user._id,
+  }))
+
+  if (select._id) {
+    return <Navigate to={'/'} />
+  }
+
   return (
     <>
       <Head title={t('title')}>

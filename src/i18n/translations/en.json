@@ -16,6 +16,7 @@
     "other": "articles"
   },
   "user.enter": "Login",
+  "user.exit": "Logout",
   "user.submit": "Login",
   "user.label.login": "Login",
   "user.label.password": "Password"

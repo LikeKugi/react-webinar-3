@@ -1,5 +1,5 @@
 import useTranslate from "../../hooks/use-translate";
-import {useCallback, useState} from "react";
+import {useState} from "react";
 import InputField from "../../components/input-field";
 import {cn as bem} from "@bem-react/classname";
 import "./style.css";
@@ -16,15 +16,14 @@ function LoginForm() {
     error: state.user.error,
   }))
 
-  const callbacks = {
-    handleSubmit: useCallback((e) => {
-      e.preventDefault();
-      store.actions.user.loginUser({login, password});
-    }, [login, password]),
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    store.actions.user.loginUser({login, password});
+  };
+
   const cn = bem("LoginForm");
   return (
-    <form onSubmit={callbacks.handleSubmit}
+    <form onSubmit={handleSubmit}
           className={cn()}>
       <InputField label={t("user.label.login")}
                   type="text"

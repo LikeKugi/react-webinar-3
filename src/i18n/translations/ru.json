@@ -18,6 +18,7 @@
     "other": "товара"
   },
   "user.enter": "Вход",
+  "user.exit": "Выход",
   "user.submit": "Войти",
   "user.label.login": "Логин",
   "user.label.password": "Пароль"

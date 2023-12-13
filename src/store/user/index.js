@@ -18,6 +18,13 @@ class User extends StoreModule {
     };
   }
 
+  setToken(token) {
+    this.setState({
+      ...this.getState(),
+      token,
+    })
+  }
+
   async loginUser({login, password}) {
     this.setState({
       ...this.initState(),
@@ -75,18 +82,23 @@ class User extends StoreModule {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          "X-Token": this.getState().token,
         },
-        body: JSON.stringify({"X-Token": this.getState().token}),
       });
       const json = await response.json();
-      console.log(json)
-      this.setState({
-        ...this.initState(),
-      })
+      if (json.result) {
+        this.setState({
+          ...this.initState(),
+        })
+      } else {
+        this.setState({
+          ...this.initState(),
+          waiting: false,
+        })
+      }
     } catch (e) {
       this.setState({
         ...this.initState(),
-        error: e.message,
       });
     }
   }
@@ -107,9 +119,7 @@ class User extends StoreModule {
 
       if (response.ok) {
         this.setState({
-          ...this.getState(),
-          error: '',
-          waiting: false,
+          ...this.initState(),
           user: {
             _id: json.result._id,
             profile: {
@@ -121,15 +131,13 @@ class User extends StoreModule {
         })
       } else {
         this.setState({
-          ...this.getState(),
+          ...this.initState(),
           waiting: false,
-          error: json.error.message,
         })
       }
     } catch (e) {
       this.setState({
         ...this.initState(),
-        error: e.data?.issues[0].message || e.message,
         waiting: false,
       });
     }

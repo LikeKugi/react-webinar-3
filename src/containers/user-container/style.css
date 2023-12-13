@@ -4,3 +4,9 @@
   background: #fff;
   box-sizing: border-box;
 }
+
+.UserContainer-profile {
+  display: inline-block;
+  font-size: 13px;
+  margin-inline-end: 20px;
+}
