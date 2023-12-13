@@ -13,12 +13,12 @@ Content-Type: application/json
 # Выход - отмена авториазции для удаления токена
 
 DELETE http://example.front.ylab.io/api/v1/users/sign
-X-Token: 56677139a343b4c4c8087a3da579e9fabdbccc6231941654b094a4c011a4a582
+X-Token: 3f4af695ac8947d648a44a862ed1e4da26d7dc901b1505f05f377f2451dcd0f4
 Content-Type: application/json
 
 ###
 # Свой профиль
 
 GET http://example.front.ylab.io/api/v1/users/self?fields=*
-X-Token: 56677139a343b4c4c8087a3da579e9fabdbccc6231941654b094a4c011a4a582
+X-Token: 017a7b833c5dd4ba3695b4ce3e6b07d8b01baebfcef899e4f7cf793f7eb868ba
 Content-Type: application/json

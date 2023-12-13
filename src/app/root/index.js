@@ -12,7 +12,6 @@ function Root() {
   useEffect(() => {
     const token = getCookie('token');
     if (token) {
-      console.log('loading user')
       store.actions.user.setToken(token);
       store.actions.user.selfUser();
     }

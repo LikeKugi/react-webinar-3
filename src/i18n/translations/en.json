@@ -19,5 +19,9 @@
   "user.exit": "Logout",
   "user.submit": "Login",
   "user.label.login": "Login",
-  "user.label.password": "Password"
+  "user.label.password": "Password",
+  "profile.heading": "Profile",
+  "profile.name": "Name",
+  "profile.phone": "Phone",
+  "profile.email": "email"
 }

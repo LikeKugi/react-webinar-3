@@ -21,5 +21,9 @@
   "user.exit": "Выход",
   "user.submit": "Войти",
   "user.label.login": "Логин",
-  "user.label.password": "Пароль"
+  "user.label.password": "Пароль",
+  "profile.heading": "Профиль",
+  "profile.name": "Имя",
+  "profile.phone": "Телефон",
+  "profile.email": "email"
 }

@@ -7,10 +7,10 @@ class User extends StoreModule {
       token: "",
       user: {
         _id: "",
+        email: "",
         profile: {
           name: "",
           phone: "",
-          email: "",
         },
       },
       error: "",
@@ -45,10 +45,10 @@ class User extends StoreModule {
           token: json.result.token,
           user: {
             _id: json.result.user._id,
+            email: json.result.user.email,
             profile: {
               name: json.result.user.profile.name,
               phone: json.result.user.profile.phone,
-              email: json.result.user.profile.email,
             },
           },
           error: "",
@@ -73,6 +73,9 @@ class User extends StoreModule {
   }
 
   async logoutUser() {
+    if (!this.getState().token) {
+      return
+    }
     this.setState({
       ...this.getState(),
       waiting: true,
@@ -104,6 +107,9 @@ class User extends StoreModule {
   }
 
   async selfUser() {
+    if (!this.getState().token) {
+      return
+    }
     this.setState({
       ...this.getState(),
       waiting: true,
@@ -119,13 +125,15 @@ class User extends StoreModule {
 
       if (response.ok) {
         this.setState({
-          ...this.initState(),
+          ...this.getState(),
+          waiting: false,
+          error: '',
           user: {
             _id: json.result._id,
+            email: json.result.email,
             profile: {
               name: json.result.profile.name,
               phone: json.result.profile.phone,
-              email: json.result.profile.email,
             },
           }
         })
