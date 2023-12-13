@@ -10,7 +10,7 @@ function Heading({text, variant}) {
 
 Heading.propTypes = {
   text: PropTypes.string,
-  variant: PropTypes.oneOf('h1', 'h2', 'h3', 'h4', 'h5', 'h6')
+  variant: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 }
 
 Heading.defaultProps = {

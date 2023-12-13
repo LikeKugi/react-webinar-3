@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import {useId} from "react";
-import './style.css'
+import "./style.css";
 
 function InputField(props) {
   const inputId = useId();
@@ -9,7 +9,10 @@ function InputField(props) {
       <label htmlFor={inputId}>{props.label}</label>
       <input id={inputId}
              type={props.type}
-             name={props.name}/>
+             name={props.name}
+             value={props.value}
+             onChange={e => props.onChange(e.target.value)}
+             autoComplete="off"/>
     </div>
   );
 }

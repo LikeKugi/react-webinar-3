@@ -47,7 +47,6 @@ export function makeOptionsArrayFromMap(map, out=[], key=null , indent=0) {
     return out
   }
   for (const item of map.get(key)) {
-    console.log(item, indent)
     out.push({value: item._id, title: '- '.repeat(indent)+item.title});
     if (map.has(item._id)) {
       makeOptionsArrayFromMap(map, out, item._id, indent+1)
