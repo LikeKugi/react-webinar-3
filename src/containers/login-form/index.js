@@ -1,10 +1,9 @@
 import useTranslate from "../../hooks/use-translate";
 import {useState} from "react";
 import InputField from "../../components/input-field";
-import {cn as bem} from "@bem-react/classname";
-import "./style.css";
 import useStore from "../../hooks/use-store";
 import useSelector from "../../hooks/use-selector";
+import FormLayout from "../../components/form-layout";
 
 function LoginForm() {
   const store = useStore();
@@ -21,10 +20,8 @@ function LoginForm() {
     store.actions.user.loginUser({login, password});
   };
 
-  const cn = bem("LoginForm");
   return (
-    <form onSubmit={handleSubmit}
-          className={cn()}>
+    <FormLayout onSubmit={handleSubmit}>
       <InputField label={t("user.label.login")}
                   type="text"
                   onChange={setLogin}
@@ -35,9 +32,9 @@ function LoginForm() {
                   onChange={setPassword}
                   value={password}
                   name="password"/>
-      {select.error && <p className={cn("error")}>{select.error}</p>}
+      {select.error && <p>{select.error}</p>}
       <button type="submit">{t("user.submit")}</button>
-    </form>
+    </FormLayout>
   );
 }
 

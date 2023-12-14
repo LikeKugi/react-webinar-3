@@ -1,4 +1,4 @@
-.LoginForm {
+.FormLayout {
   padding-inline: 20px;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   gap: 22px
 }
 
-.LoginForm-error {
+.FormLayout p {
   margin: 0;
   color: #FF0000;
 }
