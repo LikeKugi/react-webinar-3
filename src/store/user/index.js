@@ -25,6 +25,12 @@ class User extends StoreModule {
     })
   }
 
+  resetState() {
+    this.setState({
+      ...this.initState(),
+    })
+  }
+
   async loginUser({login, password}) {
     this.setState({
       ...this.initState(),
@@ -106,12 +112,19 @@ class User extends StoreModule {
     }
   }
 
-  async selfUser() {
+  async selfUser(token) {
+    if (token) {
+      this.setState({
+        ...this.getState(),
+        token,
+      })
+    }
     if (!this.getState().token) {
       return
     }
     this.setState({
       ...this.getState(),
+      error: '',
       waiting: true,
     });
     try {
@@ -140,12 +153,14 @@ class User extends StoreModule {
       } else {
         this.setState({
           ...this.initState(),
+          error: json.error.data?.issues[0].message || json.error.message,
           waiting: false,
         })
       }
     } catch (e) {
       this.setState({
         ...this.initState(),
+        error: e.message,
         waiting: false,
       });
     }
