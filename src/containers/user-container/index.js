@@ -1,11 +1,10 @@
 import SideLayout from "../../components/side-layout";
 import {Link, useNavigate} from "react-router-dom";
-import './style.css'
 import useTranslate from "../../hooks/use-translate";
 import useStore from "../../hooks/use-store";
 import useSelector from "../../hooks/use-selector";
-import {cn as bem} from "@bem-react/classname";
 import {deleteCookie} from "../../utils";
+import UserLayout from "../../components/user-layout";
 
 function UserContainer() {
   const navigate = useNavigate();
@@ -23,16 +22,14 @@ function UserContainer() {
     },
   }
 
-  const cn = bem("UserContainer")
-
   const {t} = useTranslate()
 
   return (
-    <div className={cn()}>
+    <UserLayout>
       <SideLayout side={'end'} padding={'small-medium'}>
         {select.name ? (
           <>
-            <Link className={cn("profile")} to={'/profile'}>{select.name}</Link>
+            <Link to={'/profile'}>{select.name}</Link>
             <button onClick={callbacks.logout}>{t("user.exit")}</button>
           </>
         ) : (
@@ -40,7 +37,7 @@ function UserContainer() {
         )}
 
       </SideLayout>
-    </div>
+    </UserLayout>
 
   )
 }

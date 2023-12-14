@@ -1,4 +1,4 @@
-.UserContainer {
+.UserLayout {
   max-width: 1024px;
   margin: 0 auto;
   background: #fff;
@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.UserContainer-profile {
+.UserLayout a {
   display: inline-block;
   font-size: 13px;
   margin-inline-end: 20px;
