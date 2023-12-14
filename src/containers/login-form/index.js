@@ -1,5 +1,5 @@
 import useTranslate from "../../hooks/use-translate";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import InputField from "../../components/input-field";
 import useStore from "../../hooks/use-store";
 import useSelector from "../../hooks/use-selector";
@@ -14,6 +14,10 @@ function LoginForm() {
   const select = useSelector(state => ({
     error: state.user.error,
   }))
+
+  useEffect(() => {
+    store.actions.user.resetState();
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
