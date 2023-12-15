@@ -1,27 +1,18 @@
 import {Navigate, Outlet} from "react-router-dom";
-import {deleteCookie, getCookie} from "../../utils";
-import {useEffect} from "react";
-import useStore from "../../hooks/use-store";
+import {getCookie} from "../../utils";
 import useSelector from "../../hooks/use-selector";
+import useAuth from "../../hooks/use-auth";
 
 function PrivateToken() {
   const token = getCookie("token");
 
-  const store = useStore();
+  useAuth();
 
   const select = useSelector(state => ({
     error: state.user.error,
   }));
 
-  useEffect(() => {
-    const load = async () => {
-      await store.actions.user.selfUser(token);
-    };
-    load();
-  }, []);
-
   if (!token || select.error) {
-    deleteCookie("token");
     return <Navigate to={"/login"}/>;
   }
 

@@ -1,21 +1,11 @@
 import PageLayout from "../../components/page-layout";
 import UserContainer from "../../containers/user-container";
 import {Outlet} from "react-router-dom";
-import {useEffect} from "react";
-import {getCookie} from "../../utils";
-import useStore from "../../hooks/use-store";
+import useAuth from "../../hooks/use-auth";
 
 function Root() {
 
-  const store = useStore();
-
-  useEffect(() => {
-    const token = getCookie('token');
-    if (token) {
-      store.actions.user.setToken(token);
-      store.actions.user.selfUser();
-    }
-  }, []);
+  useAuth();
 
   return (
     <PageLayout head={<UserContainer />}>

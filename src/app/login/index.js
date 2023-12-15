@@ -12,10 +12,10 @@ function Login() {
   const {t} = useTranslate();
 
   const select = useSelector(state => ({
-    _id: state.user.user._id,
+    token: state.user.token,
   }))
 
-  if (select._id) {
+  if (select.token) {
     return <Navigate to={'/'} />
   }
 

@@ -119,7 +119,7 @@ class User extends StoreModule {
         token,
       })
     }
-    if (!this.getState().token) {
+    if (!this.getState().token || this.getState().waiting) {
       return
     }
     this.setState({
