@@ -6,6 +6,7 @@ import Article from "./article";
 import Root from "./root";
 import Login from "./login";
 import Profile from "./profile";
+import PrivateToken from "./private-token";
 
 /**
  * Приложение
@@ -21,7 +22,9 @@ function App() {
         <Route path={''} element={<Root/>}>
           <Route index element={<Main/>}/>
           <Route path={'/login'} element={<Login/>}/>
-          <Route path={'/profile'} element={<Profile/>}/>
+          <Route element={<PrivateToken />} >
+            <Route path={'/profile'} element={<Profile/>}/>
+          </Route>
           <Route path={'/articles/:id'} element={<Article/>}/>
         </Route>
       </Routes>
