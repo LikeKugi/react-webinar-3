@@ -9,7 +9,7 @@ function PrivateToken() {
   useAuth();
 
   const select = useSelector(state => ({
-    error: state.user.error,
+    error: state.session.error,
   }));
 
   if (!token || select.error) {

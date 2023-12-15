@@ -7,8 +7,8 @@ function useAuth() {
   const token = getCookie('token');
   const store = useStore();
   const select = useSelector(state=> ({
-    error: state.user.error,
-    loading: state.user.waiting,
+    error: state.session.error,
+    loading: state.session.waiting,
   }))
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function useAuth() {
       return;
     }
     const load = async () => {
-      await store.actions.user.selfUser(token);
+      await store.actions.session.selfUser(token);
     }
     if (token) {
       load();

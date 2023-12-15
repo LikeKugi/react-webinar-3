@@ -12,7 +12,7 @@ function Login() {
   const {t} = useTranslate();
 
   const select = useSelector(state => ({
-    token: state.user.token,
+    token: state.session.token,
   }))
 
   if (select.token) {

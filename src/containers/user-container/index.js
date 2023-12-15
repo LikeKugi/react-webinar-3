@@ -12,12 +12,12 @@ function UserContainer() {
   const store = useStore();
 
   const select = useSelector(state => ({
-    name: state.user.user.profile.name,
+    name: state.session.user.name,
   }))
 
   const callbacks = {
     logout: () => {
-      store.actions.user.logoutUser();
+      store.actions.session.logoutUser();
       deleteCookie('token');
     },
   }

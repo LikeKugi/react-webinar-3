@@ -5,17 +5,25 @@ import Head from "../../components/head";
 import Navigation from "../../containers/navigation";
 import Spinner from "../../components/spinner";
 import ProfileCard from "../../components/profile-card";
+import useStore from "../../hooks/use-store";
+import {useEffect} from "react";
 
 function Profile() {
   const {t} = useTranslate();
 
+  const store = useStore();
+
   const select = useSelector(state => ({
-    token: state.user.token,
+    token: state.session.token,
     loading: state.user.waiting,
     name: state.user.user.profile.name,
     phone: state.user.user.profile.phone,
     email: state.user.user.email,
   }));
+
+  useEffect(() => {
+    store.actions.user.selfUser(select.token)
+  }, [select.token])
 
   return (<>
     <Head title={t("title")}>

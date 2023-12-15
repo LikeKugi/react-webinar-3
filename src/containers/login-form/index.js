@@ -12,16 +12,17 @@ function LoginForm() {
   const {t} = useTranslate();
 
   const select = useSelector(state => ({
-    error: state.user.error,
+    error: state.session.error,
   }))
 
   useEffect(() => {
+    store.actions.session.resetState();
     store.actions.user.resetState();
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    store.actions.user.loginUser({login, password});
+    store.actions.session.loginUser({login, password});
   };
 
   return (
