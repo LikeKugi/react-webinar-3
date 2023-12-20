@@ -1,0 +1,33 @@
+.CommentField {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.CommentField textarea {
+  font-family: Arial;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  color: #000;
+  font-size: 14px;
+}
+
+.CommentField textarea::placeholder {
+  font-family: Arial;
+  color: #000;
+  font-size: 14px;
+}
+
+.CommentField label {
+  font-size: 12px;
+}
+
+.CommentField button {
+  display: inline-block;
+  padding: 3px 8px;
+}
