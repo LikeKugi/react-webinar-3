@@ -20,5 +20,18 @@
   "auth.password": "Password",
   "auth.signIn": "Sign in",
   "session.signIn": "Sign In",
-  "session.signOut": "Sign Out"
+  "session.signOut": "Sign Out",
+  "comment.answer": "Answer",
+  "comment.commentField.label": "New Answer",
+  "comment.commentField.labelSend": "Send",
+  "comment.commentField.labelCancel": "Cancel",
+  "comment.commentFallback.loginLabel": "Sign In",
+  "comment.commentFallback.text": " to add answer ",
+  "comment.commentFallback.reset": "Cancel",
+  "commentField.label": "New Comment",
+  "commentField.labelSend": "Send",
+  "commentField.placeholder": "Text",
+  "commentFallback.loginLabel": "Sign In",
+  "commentFallback.text": " to add comment ",
+  "articleComments.title": "Comments"
 }

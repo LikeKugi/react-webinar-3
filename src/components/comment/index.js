@@ -25,7 +25,7 @@ function Comment(props) {
     </p>
     <p className={cn('text')}>{props.text}</p>
     <p>
-      <span className={cn('answer')} onClick={clickHandle}>Ответить</span>
+      <span className={cn('answer')} onClick={clickHandle}>{props.answerLabel}</span>
     </p>
   </div>)
 }
@@ -47,10 +47,12 @@ Comment.propTypes = {
   isDeleted: PropTypes.bool,
   offset: PropTypes.number,
   answer: PropTypes.func,
+  answerLabel: PropTypes.string,
 }
 
 Comment.defaultProps = {
   answer: () => {},
+  answerLabel: 'Ответить'
 }
 
 export default Comment;

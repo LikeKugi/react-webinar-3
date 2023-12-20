@@ -22,5 +22,18 @@
   "auth.password": "Пароль",
   "auth.signIn": "Войти",
   "session.signIn": "Вход",
-  "session.signOut": "Выход"
+  "session.signOut": "Выход",
+  "comment.answer": "Ответить",
+  "comment.commentField.label": "Новый ответ",
+  "comment.commentField.labelSend": "Отправить",
+  "comment.commentField.labelCancel": "Отмена",
+  "comment.commentFallback.loginLabel": "Войдите",
+  "comment.commentFallback.text": ", чтобы иметь возможность ответить. ",
+  "comment.commentFallback.reset": "Отмена",
+  "commentField.label": "Новый комментарий",
+  "commentField.labelSend": "Отправить",
+  "commentField.placeholder": "Текст",
+  "commentFallback.loginLabel": "Войдите",
+  "commentFallback.text": ", чтобы иметь возможность комментировать. ",
+  "articleComments.title": "Комментарии"
 }

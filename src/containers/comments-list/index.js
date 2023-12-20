@@ -6,15 +6,18 @@ import ArticleComments from "../../components/article-comments";
 import listToTree from "../../utils/list-to-tree";
 import treeToList from "../../utils/tree-to-list";
 import {useCallback, useMemo, useState} from "react";
-import Comment from "../../components/comment/comment";
+import Comment from "../../components/comment";
 import CommentField from "../../components/comment-field";
 import commentsActions from "../../store-redux/comments/actions";
 import {useNavigate} from "react-router-dom";
 import CommentFallback from "../../components/comment-fallback";
 import Offset from "../../components/offset";
+import useTranslate from "../../hooks/use-translate";
 
 
 function CommentsList({articleId}) {
+  const {t} = useTranslate();
+
   const [parent, setParent] = useState({
     _id: articleId,
     _type: "article",
@@ -68,28 +71,32 @@ function CommentsList({articleId}) {
   };
 
   return (<Spinner active={select.waiting}>
-    <ArticleComments title={`Комментарии (${select.count})`}>
+    <ArticleComments title={`${t("articleComments.title")} (${select.count})`}>
       {select.count > 0 && comments.items.map(comment => (
-        <Offset key={comment._id} offset={comment.offset}>
+        <Offset key={comment._id}
+                offset={comment.offset}>
           <Comment {...comment}
-                   answer={callbacks.setParent}/>
-          {parent._id === comment._id && (storeSelect.exists ? (<CommentField label="Новый ответ"
-                                                                              labelSend="Отправить"
-                                                                              labelCancel="Отмена"
+                   answer={callbacks.setParent}
+                   answerLabel={t("comment.answer")}/>
+          {parent._id === comment._id && (storeSelect.exists ? (<CommentField label={t("comment.commentField.label")}
+                                                                              labelSend={t("comment.commentField.labelSend")}
+                                                                              labelCancel={t("comment.commentField.labelCancel")}
                                                                               onReset={callbacks.resetParent}
-                                                                              onSubmit={callbacks.addComment}/>) : (
-            <CommentFallback loginLabel="Войдите"
-                             text=", чтобы иметь возможность ответить. "
-                             reset="Отмена"
+                                                                              onSubmit={callbacks.addComment}
+                                                                              placeholder={t("commentField.placeholder")}/>) : (
+            <CommentFallback loginLabel={t("comment.commentFallback.loginLabel")}
+                             text={t("comment.commentFallback.text")}
+                             reset={t("comment.commentFallback.reset")}
                              signInAction={callbacks.onSignIn}
                              resetAction={callbacks.resetParent}/>))}
 
         </Offset>))}
-      {parent._id === articleId && (storeSelect.exists ? (<CommentField label="Новый комментарий"
-                                                                        labelSend="Отправить"
-                                                                        onSubmit={callbacks.addComment}/>) : (
-        <CommentFallback loginLabel="Войдите"
-                         text=", чтобы иметь возможность комментировать. "
+      {parent._id === articleId && (storeSelect.exists ? (<CommentField label={t("commentField.label")}
+                                                                        labelSend={t("commentField.labelSend")}
+                                                                        onSubmit={callbacks.addComment}
+                                                                        placeholder={t("commentField.placeholder")}/>) : (
+        <CommentFallback loginLabel={t("commentFallback.loginLabel")}
+                         text={t("commentFallback.text")}
                          signInAction={callbacks.onSignIn}
         />))}
     </ArticleComments>

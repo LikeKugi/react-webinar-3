@@ -39,6 +39,8 @@ CommentField.propTypes = {
 }
 
 CommentField.defaultProps = {
+  label: 'Новый комментарий',
+  labelSend: 'Отправить',
   labelCancel: '',
   placeholder: 'Текст',
   onSubmit: () => {},
