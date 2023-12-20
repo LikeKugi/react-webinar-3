@@ -21,7 +21,7 @@ function Comment(props) {
   return (<div className={cn()}>
     <p className={cn('title')}>
       <strong>{props.author.profile.name}</strong>
-      <span className={cn('date')}>{`${dataFromDate.date} ${dataFromDate.month} ${dataFromDate.year} в ${dataFromDate.hours}:${dataFromDate.minutes}`}</span>
+      <span className={cn('date')}>{`${dataFromDate.date} ${dataFromDate.month} ${dataFromDate.year} в ${dataFromDate.hours}:${dataFromDate.minutes > 10 ? dataFromDate.minutes : '0'+dataFromDate.minutes}`}</span>
     </p>
     <p className={cn('text')}>{props.text}</p>
     <p>

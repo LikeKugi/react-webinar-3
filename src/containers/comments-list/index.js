@@ -70,7 +70,7 @@ function CommentsList({articleId}) {
   return (<Spinner active={select.waiting}>
     <ArticleComments title={`Комментарии (${select.count})`}>
       {select.count > 0 && comments.items.map(comment => (
-        <Offset key={comment._id}>
+        <Offset key={comment._id} offset={comment.offset}>
           <Comment {...comment}
                    answer={callbacks.setParent}/>
           {parent._id === comment._id && (storeSelect.exists ? (<CommentField label="Новый ответ"
