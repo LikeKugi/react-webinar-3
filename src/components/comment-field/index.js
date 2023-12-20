@@ -6,7 +6,12 @@ function CommentField(props) {
   const inputId = useId();
   const [text, setText] = useState('');
 
-  return (<form className="CommentField" onReset={props.onReset}>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.onSubmit(text);
+  }
+
+  return (<form className="CommentField" onReset={props.onReset} onSubmit={handleSubmit}>
     <label htmlFor={inputId}>
       <strong>{props.label}</strong>
     </label>

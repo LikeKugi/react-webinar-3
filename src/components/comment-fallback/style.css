@@ -1,0 +1,18 @@
+.CommentFallback {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.CommentFallback span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.CommentFallback-signin {
+  color: #0087E9;
+}
+
+.CommentFallback-reset {
+  color: #666;
+}

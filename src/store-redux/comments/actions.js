@@ -18,5 +18,32 @@ export default {
         dispatch({type: CommentsConstants.LOAD_ERROR, payload: {e}});
       }
     };
+  },
+
+  addComment: ({text, parent, id}) => {
+    return async (dispatch, getState, services) => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      try {
+        dispatch({type: CommentsConstants.LOAD_START});
+        await services.api.request({
+          url: `/api/v1/comments`,
+          method: 'POST',
+          headers: {
+            'X-Token': token,
+          },
+          body: JSON.stringify({
+            text,
+            parent,
+          })
+        })
+        const res = await services.api.request({
+          url: `/api/v1/comments?fields=items(_id,text,dateCreate,author(profile(name)),parent(_id,_type),isDeleted),count&limit=*&search[parent]=${id}`
+        });
+        dispatch({type: CommentsConstants.LOAD_SUCCESS, payload: {data: res.data.result}});
+      } catch (e) {
+        dispatch({type: CommentsConstants.LOAD_ERROR, payload: e.message});
+      }
+    }
   }
 };
