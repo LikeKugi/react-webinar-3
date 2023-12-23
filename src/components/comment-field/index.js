@@ -9,6 +9,7 @@ function CommentField(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onSubmit(text);
+    setText('');
   }
 
   return (<form className="CommentField" onReset={props.onReset} onSubmit={handleSubmit}>

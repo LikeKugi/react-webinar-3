@@ -47,7 +47,12 @@ function CommentsList({articleId}) {
       parent: item.parent,
       isDeleted: item.isDeleted,
       offset: level - 1,
-    })).slice(1)), [select.comments])
+    }))).slice(1), [select.comments]),
+    answers: useMemo(() => treeToList(listToTree(select.comments), (item, level) => ({
+      targetId: item._id,
+      position: item.children.length > 0 ? item.children.at(-1)._id : item._id,
+      offset: level,
+    })), [select.comments]).reduce((acc, item) => acc.has(item.position) ? acc.set(item.position, [...acc.get(item.position), item]) : acc.set(item.position, [item]), new Map()),
   };
 
   const callbacks = {
@@ -80,19 +85,33 @@ function CommentsList({articleId}) {
                 offset={comment.offset}>
           <Comment {...comment}
                    answer={callbacks.setParent}
-                   answerLabel={t("comment.answer")} isCurrentUser={storeSelect.userName === comment.author.profile.name}/>
-          {parent._id === comment._id && (storeSelect.exists ? (<CommentField label={t("comment.commentField.label")}
-                                                                              labelSend={t("comment.commentField.labelSend")}
-                                                                              labelCancel={t("comment.commentField.labelCancel")}
-                                                                              onReset={callbacks.resetParent}
-                                                                              onSubmit={callbacks.addComment}
-                                                                              placeholder={t("commentField.placeholder")}/>) : (
-            <CommentFallback loginLabel={t("comment.commentFallback.loginLabel")}
-                             text={t("comment.commentFallback.text")}
-                             reset={t("comment.commentFallback.reset")}
-                             signInAction={callbacks.onSignIn}
-                             resetAction={callbacks.resetParent}/>))}
-
+                   answerLabel={t("comment.answer")}
+                   isCurrentUser={storeSelect.userName === comment.author.profile.name}/>
+          {comments.answers.has(comment._id) && comments.answers.get(comment._id).map(answer => {
+            if (parent._id === answer.targetId) {
+              let inner;
+              if (storeSelect.exists) {
+                inner = (<CommentField key={answer.targetId}
+                                       label={t("comment.commentField.label")}
+                                       labelSend={t("comment.commentField.labelSend")}
+                                       labelCancel={t("comment.commentField.labelCancel")}
+                                       onReset={callbacks.resetParent}
+                                       onSubmit={callbacks.addComment}
+                                       placeholder={t("commentField.placeholder")}/>);
+              } else {
+                inner = (
+                  <CommentFallback key={answer.targetId}
+                                   loginLabel={t("comment.commentFallback.loginLabel")}
+                                   text={t("comment.commentFallback.text")}
+                                   reset={t("comment.commentFallback.reset")}
+                                   signInAction={callbacks.onSignIn}
+                                   resetAction={callbacks.resetParent}/>);
+              }
+              return (<Offset offset={answer.offset - comment.offset}>
+                {inner}
+              </Offset>);
+            }
+          })}
         </Offset>))}
       {parent._id === articleId && (storeSelect.exists ? (<CommentField label={t("commentField.label")}
                                                                         labelSend={t("commentField.labelSend")}
