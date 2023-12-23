@@ -23,7 +23,7 @@ function reducer(state = initialState, action) {
       return {...state, data: initialData, waiting: false, error: action.payload.error.message};
 
     case CommentsConstants.ADD_COMMENT:
-      return initialState;
+      return {...state, data: {count: state.data.count + 1, items: [...state.data.items, action.payload]}};
 
     default:
       return state;

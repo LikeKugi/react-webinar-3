@@ -20,13 +20,12 @@ export default {
     };
   },
 
-  addComment: ({text, parent, id}) => {
+  addComment: ({text, parent, profileName}) => {
     return async (dispatch, getState, services) => {
       const token = localStorage.getItem('token');
       if (!token) return;
       try {
-        dispatch({type: CommentsConstants.LOAD_START});
-        await services.api.request({
+        const result = await services.api.request({
           url: `/api/v1/comments`,
           method: 'POST',
           headers: {
@@ -37,11 +36,26 @@ export default {
             parent,
           })
         })
-        const res = await services.api.request({
-          url: `/api/v1/comments?fields=items(_id,text,dateCreate,author(profile(name)),parent(_id,_type),isDeleted),count&limit=*&search[parent]=${id}`
-        });
-        dispatch({type: CommentsConstants.LOAD_SUCCESS, payload: {data: res.data.result}});
+        const resObject = result.data.result;
+        const responseData = {
+          _id: resObject._id,
+          text: resObject.text,
+          dateCreate: resObject.dateCreate,
+          author: {
+            profile: {
+              name: profileName
+            },
+            _id: resObject.author._id,
+          },
+          parent: {
+            _id: resObject.parent._id,
+            _type: resObject.parent._type,
+          },
+          isDeleted: resObject.isDeleted,
+        }
+        dispatch({type: CommentsConstants.ADD_COMMENT, payload: responseData});
       } catch (e) {
+
         dispatch({type: CommentsConstants.LOAD_ERROR, payload: e.message});
       }
     }

@@ -31,7 +31,6 @@ function CommentsList({articleId}) {
     userName: state.session.user?.profile?.name,
   }));
 
-  console.log(storeSelect.userName)
 
   const select = useSelector(state => ({
     comments: state.comments.data.items,
@@ -66,7 +65,7 @@ function CommentsList({articleId}) {
     }, [setParent]),
     addComment: useCallback((text) => {
       if (!/\S/.test(text) || text.length === 0) return;
-      dispatch(commentsActions.addComment({text, parent, id: articleId}));
+      dispatch(commentsActions.addComment({text, parent, profileName: storeSelect.userName}));
       callbacks.resetParent();
     }, [parent]),
     onSignIn: useCallback(() => {
