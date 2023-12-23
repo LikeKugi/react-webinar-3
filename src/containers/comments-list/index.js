@@ -65,6 +65,7 @@ function CommentsList({articleId}) {
       });
     }, [setParent]),
     addComment: useCallback((text) => {
+      if (!/\S/.test(text) || text.length === 0) return;
       dispatch(commentsActions.addComment({text, parent, id: articleId}));
       callbacks.resetParent();
     }, [parent]),
