@@ -28,7 +28,10 @@ function CommentsList({articleId}) {
 
   const storeSelect = useStoreSelector(state => ({
     exists: state.session.exists,
+    userName: state.session.user?.profile?.name,
   }));
+
+  console.log(storeSelect.userName)
 
   const select = useSelector(state => ({
     comments: state.comments.data.items,
@@ -77,7 +80,7 @@ function CommentsList({articleId}) {
                 offset={comment.offset}>
           <Comment {...comment}
                    answer={callbacks.setParent}
-                   answerLabel={t("comment.answer")}/>
+                   answerLabel={t("comment.answer")} isCurrentUser={storeSelect.userName === comment.author.profile.name}/>
           {parent._id === comment._id && (storeSelect.exists ? (<CommentField label={t("comment.commentField.label")}
                                                                               labelSend={t("comment.commentField.labelSend")}
                                                                               labelCancel={t("comment.commentField.labelCancel")}
